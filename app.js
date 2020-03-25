@@ -1,50 +1,55 @@
-const express = require('express');
-const morgan = require('morgan');
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
 
 const app = express();
-app.use(morgan('dev'));
-
-app.listen(8000, () => {
-  console.log('Express server is listening on port 8000....wooo hooo!')
-})
-
-const data = require('./app-data');
-const cors = require('cors');
+app.use(morgan("dev"));
 app.use(cors());
 
+const data = require("./app-data");
 
+app.get("/app", (req, res) => {
+  const { search = "", sort } = req.query;
 
-app.get('/app', (req, res) => {
- const { sort, genre } = req.query;
+  if (sort) {
+    if (!["App", "genre"].includes(sort)) {
+      return res.status(400).send("sort either by App name or genre");
+    }
+  }
 
- if (!sort && !genre) {
-   return res.json(data)
- }
+  let results = data.filter(data =>
+    data.App.toLowerCase().includes(search.toLowerCase())
+  );
 
- if (sort !== 'rating' && sort !== 'app') {
-   return res
-          .status(400)
-          .send('Sort by rating or app')
- }
+  if (sort) {
+    results.sort((a, b) => {
+      return a[sort] > b[sort] ? 1 : a[sort] < b[sort] ? -1 : 0;
+    });
+  }
 
- const genreValues = ['Action', 'Puzzle', 'Strategy', 'Casual', 'Arcade', 'Card']
- if (!genreValues.includes(genre)) {
-   return res 
-          .status(400)
-          .send('Select a valid genre')
- }
+  // const genreValues = [
+  //   "Action",
+  //   "Puzzle",
+  //   "Strategy",
+  //   "Casual",
+  //   "Arcade",
+  //   "Card"
+  // ];
+  // if (!genreValues.includes(genre)) {
+  //   return res.status(400).send("Select a valid genre");
+  // }
 
- 
+  // if (sort === "rating") {
+  // }
 
- if (sort === 'rating') {
-  
- }
+  // if (sort === "app") {
+  //   filteredResults = filteredResults.filter(app => {
+  //     return app.title.includes(app);
+  //   });
+  // }
+  res.json(results);
+});
 
- if (sort ==='app') {
-filteredResults = filteredResults.filter(app =>{
-  return app.title.includes(app)
-})
- }
-res.json(data);
-
-})
+app.listen(8000, () => {
+  console.log("Express server is listening on port 8000....wooo hooo!");
+});

@@ -1,38 +1,28 @@
 {
-  "name": "google-play-apps",
+  "name": "google-play-trina-dasha",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< HEAD
-    "start": "nodemon app"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-=======
-    "start": "node app",
-    "dev": "nodemon app"
-  },
-  "author": "",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/thinkful-ei-macaw/google-play-trina-dasha.git"
-  },
-  "bugs": {
-    "url": "https://github.com/thinkful-ei-macaw/google-play-trina-dasha/issues"
-  },
-  "homepage": "https://github.com/thinkful-ei-macaw/google-play-trina-dasha#readme",
   "description": "",
+  "main": "app-data.js",
   "dependencies": {
     "cors": "^2.8.5",
-    "debug": "^4.1.1",
->>>>>>> 834580df4e6ddab330621fe8a98e4235cee0b6b1
     "express": "^4.17.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
-  }
+  },
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinkful-ei-macaw/google-play-trina-dasha.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinkful-ei-macaw/google-play-trina-dasha/issues"
+  },
+  "homepage": "https://github.com/thinkful-ei-macaw/google-play-trina-dasha#readme"
 }
